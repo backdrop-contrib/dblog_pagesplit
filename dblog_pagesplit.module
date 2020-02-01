@@ -6,6 +6,17 @@
  */
 
 /**
+ * Implements hook_permission().
+ */
+function dblog_pagesplit_permission() {
+  return array(
+    'clear site reports' => array(
+      'title' => t('Clear site reports'),
+    ),
+  );
+}
+
+/**
  * Implements hook_menu().
  */
 function dblog_pagesplit_menu() {

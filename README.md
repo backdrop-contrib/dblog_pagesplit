@@ -6,6 +6,11 @@ Backdrop CMS module that puts the "Clear log messages" form on an extra page.
 
 Install this module using the official Backdrop CMS instructions at https://backdropcms.org/guide/modules
 
+There are no settings.
+
+If you want a role other than "Administrator" to have access to the "Clear log messages" page,
+go to /admin/config/people/permissions and give them the "Clear site reports" permission.
+
 # Current maintainers
 
 * Indigoxela (https://github.com/indigoxela)
