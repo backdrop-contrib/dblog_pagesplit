@@ -1,0 +1,6 @@
+name = Dblog Page Split
+description = Puts the "Clear log messages" form on an extra page.
+backdrop = 1.x
+type = module
+tags[] = Logging
+dependencies[] = dblog

@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * @file
+ * Main module code of Dblog Page Split.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function dblog_pagesplit_menu() {
+  $items['admin/reports/dblog/view'] = array(
+    'title' => 'View',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+  $items['admin/reports/dblog/clear'] = array(
+    'title' => 'Clear',
+    'page callback' => 'backdrop_get_form',
+    'page arguments' => array('dblog_pagesplit_clear_form'),
+    'access arguments' => array('clear site reports'),
+    'weight' => 1,
+    'type' => MENU_LOCAL_TASK,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function dblog_pagesplit_menu_alter() {
+  $items['admin/reports/dblog']['type'] = MENU_NORMAL_ITEM;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function dblog_pagesplit_form_dblog_clear_log_form_alter(&$form, &$form_state, $form_id) {
+  $form['#access'] = FALSE;
+}
+
+/**
+ * Custom page callback for clear page.
+ */
+function dblog_pagesplit_clear_form() {
+  $form['dblog_clear'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Clear log messages'),
+    '#description' => t('Permanently delete the log messages from the database. This action cannot be undone.'),
+  );
+  $form['dblog_clear']['clear'] = array(
+    '#type' => 'submit',
+    '#value' => t('Clear log messages'),
+    '#submit' => array('dblog_pagesplit_clear_form_submit'),
+    '#attributes' => array('class' => array('button-danger')),
+  );
+  return $form;
+}
+
+/**
+ * Custom submit callback for dblog_pagesplit_clear_form.
+ */
+function dblog_pagesplit_clear_form_submit($form, &$form_state) {
+  $_SESSION['dblog_overview_filter'] = array();
+  db_truncate('watchdog')->execute();
+  backdrop_set_message(t('The log messages have been cleared.'));
+  $form_state['redirect'] = 'admin/reports/dblog/view';
+}
