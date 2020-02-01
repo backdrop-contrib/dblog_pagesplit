@@ -53,12 +53,12 @@ function dblog_pagesplit_form_dblog_clear_log_form_alter(&$form, &$form_state, $
  * Custom page callback for clear page.
  */
 function dblog_pagesplit_clear_form() {
-  $form['dblog_clear'] = array(
-    '#type' => 'fieldset',
+  $form['dblog_description'] = array(
+    '#type' => 'item',
     '#title' => t('Clear log messages'),
-    '#description' => t('Permanently delete the log messages from the database. This action cannot be undone.'),
+    '#markup' => '<p>' . t('Permanently delete the log messages from the database. This action cannot be undone.') . '</p>',
   );
-  $form['dblog_clear']['clear'] = array(
+  $form['dblog_clear'] = array(
     '#type' => 'submit',
     '#value' => t('Clear log messages'),
     '#submit' => array('dblog_pagesplit_clear_form_submit'),
