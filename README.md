@@ -1,9 +1,7 @@
 # Dblog Page Split
 
-Backdrop CMS module that puts the "Clear log messages" form on an extra page.
-
-That saves some space on the log page and prevents unintentional clearing of
-log messages.
+- Puts the "Clear log messages" form on an extra page.
+- Also separates the permissions to view and to delete log messages.
 
 ![Screenshot](https://raw.githubusercontent.com/backdrop-contrib/dblog_pagesplit/1.x-1.x/screenshots/screenshot-dblog.png)
 
